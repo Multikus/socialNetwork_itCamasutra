@@ -1,0 +1,24 @@
+.profile__avatar_img {
+  width: 100px;
+  height: 100px;
+}
+
+.header_avatar__box {
+  display: flex;
+  border: 1px solid red;
+}
+
+.profile__title_box {
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+}
+
+.header-title__name {
+  margin-top: 0;
+}
+
+.profile__img {
+  width: 1200px;
+  height: 200px;
+}

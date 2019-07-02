@@ -1,0 +1,9 @@
+  .header {
+    grid-area: header;
+    border: 1px solid blueviolet;
+  }
+
+  .header img {
+    width: 95px;
+    height: 95px;
+  }
