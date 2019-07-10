@@ -4,7 +4,7 @@ import css from './Settings.module.css';
 const Settings = (props) => {
     return (
         <div className={css.settings_box}>
-            Music
+            Settings
         </div>
     )
 }

@@ -4,10 +4,22 @@
   border: 1px solid chocolate;
 }
 
-.item {
+.item a{
   text-decoration: none;
+  color: blue;
+  margin: 10px;
+  padding-bottom: 15px;
 }
 
-.item.active {
-  color: gold;
+.item a.active {
+  color: red;
+}
+
+a:hover {
+  border-bottom: 2px solid blue;
+  padding-bottom: 1px;
+}
+
+.item:last-child {
+  padding-bottom: 10px;
 }
