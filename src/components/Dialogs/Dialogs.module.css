@@ -1,5 +1,32 @@
 
 .dialogs_box {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+}
+
+.dialogs_box {
     border: 1px colid #92a8d1;
     background-color: #cfe0e8;
 }
+
+.dialogs_items {
+    padding: 10px;
+}
+
+.dialogs_items .active {
+    color: goldenrod;
+}
+
+.messages {
+    padding: 10px;
+}
+
+.dialog a{
+    text-decoration: none;
+}
+/* .message {
+
+}
+
+
+*/
