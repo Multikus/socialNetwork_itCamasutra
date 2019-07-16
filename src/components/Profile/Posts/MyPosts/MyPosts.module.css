@@ -1,3 +1,16 @@
+.myPosts_wrapp {
+    margin-left: 10px;
+}
 
+.post_box {
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+}
 
-
+.addBtn_post {
+    align-self: center;
+    width: 125px;
+    padding: 5px;
+    margin: 5px;
+}

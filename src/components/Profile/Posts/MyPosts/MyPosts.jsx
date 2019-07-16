@@ -4,11 +4,12 @@ import Post from './Post/Post';
 
 
 const MyPosts = () => {
-  return <div>
-      My posts
-        <div>
+  return (
+    <div className={css.myPosts_wrapp}>
+      <h3>My posts</h3>
+       <div className={css.post_box}>
           <textarea name="NewPost" cols="50" rows="5"></textarea>
-          <button>Add post</button>
+          <button className={css.addBtn_post}>Add post</button>
         </div>
 
         <div className={css.posts}>
@@ -16,6 +17,7 @@ const MyPosts = () => {
           <Post like='13' message="It's my first message" />
         </div>
     </div>
+  )
 }
 
 export default MyPosts;

@@ -1,18 +1,15 @@
 import React from 'react';
 import css from './profile.module.css';
 import MyPosts from './Posts/MyPosts/MyPosts';
+import ProfileInfo from './Posts/ProfileInfo/ProfileInfo';
 
 const Profile = () => {
-  return <div>
-    <div className={css.profile__img_box}>
-      <img className={css.profile__img} src="http://bishop.usssulaco.ru/_bl/1/50247209.png" alt="космический корабль" />
+  return (
+    <div className={css.profile}>
+      <ProfileInfo />
+      <MyPosts />
     </div>
-    <div>
-      ava + description
-    </div>
-    <MyPosts />
-  </div>
-
+  )
 }
 
 export default Profile;

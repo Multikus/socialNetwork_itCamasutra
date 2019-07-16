@@ -19,7 +19,7 @@ const Message = (props) => {
 const Dialogs = (props) => {
     return (
         <div className={css.dialogs_box}>
-            <div className={css.dialogs_items}>
+            <div className={css.dialogs_items}> 
                 <DialogItem name='Dimych' id='1' />
                 <DialogItem name='Andrey' id='2' />
                 <DialogItem name='Sveta' id='3'  />

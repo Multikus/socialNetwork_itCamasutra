@@ -2,6 +2,7 @@
   background-color: lightgrey;
   color: blueviolet;
   margin-bottom: 10px;
+  border: 1px solid blueviolet;
 }
 
 .item img {
