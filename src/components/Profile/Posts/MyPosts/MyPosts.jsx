@@ -2,17 +2,11 @@ import React from 'react';
 import css from './MyPosts.module.css';
 import Post from './Post/Post';
 
-let posts = [
-  {id: 1, message:'Hi! How are you?', like: 21},
-  {id: 2, message:'It\'s my first message', like: 13},
-  {id: 3, message:'Закончил 25 урок', like: 25}
-]
 
-let postsElements  = posts
-  .map ( (p) => <Post like={p.like} message={p.message} /> );
+const MyPosts = (props) => {
 
+  let postsElements  = props.posts.map ( (p) => <Post like={p.like} message={p.message} /> );
 
-const MyPosts = () => {
   return (
     <div className={css.myPosts_wrapp}>
       <h3>My posts</h3>
