@@ -2,6 +2,15 @@ import React from 'react';
 import css from './MyPosts.module.css';
 import Post from './Post/Post';
 
+let posts = [
+  {id: 1, message:'Hi! How are you?', like: 21},
+  {id: 2, message:'It\'s my first message', like: 13},
+  {id: 3, message:'Закончил 25 урок', like: 25}
+]
+
+let postsElements  = posts
+  .map ( (p) => <Post like={p.like} message={p.message} /> );
+
 
 const MyPosts = () => {
   return (
@@ -13,8 +22,12 @@ const MyPosts = () => {
         </div>
 
         <div className={css.posts}>
-          <Post like='21' message='Hi! How are you?' />
-          <Post like='13' message="It's my first message" />
+          {/* пример старой записи */}
+          {/* like - атрибут, дальше передаём имя переменной с массивом */}
+          {/* массив posts указываем номер элемента [0] массива  */}
+          {/* затем указываем ключ из списка массива like */}
+          {/* <Post like={posts[0].like} message={posts[0].message} /> */}
+          { postsElements }
         </div>
     </div>
   )
