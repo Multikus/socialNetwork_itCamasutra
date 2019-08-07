@@ -5,7 +5,7 @@ import Post from './Post/Post';
 
 const MyPosts = (props) => {
 
-  let postsElements  = props.posts.map ( (p) => <Post like={p.like} message={p.message} /> );
+  let postsElements  = props.state.posts.map ( (p) => <Post like={p.like} message={p.message} /> );
 
   return (
     <div className={css.myPosts_wrapp}>

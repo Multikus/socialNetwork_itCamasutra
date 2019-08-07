@@ -7,13 +7,13 @@ import DialogItem from './DialogItem/DialogItem';
 const Dialogs = (props) => {
 //создаёт новый массив на основе старого
 // и передаёт в разметку  данные для тега DiaogsItem
-    let dialogsElements = props.dialogs.map((d) => <DialogItem name={d.name} id={d.id} />);
+    let dialogsElements = props.state.dialogs.map((d) => <DialogItem name={d.name} id={d.id} />);
 
 //d = dialog  было поставленно сокращение т.к. тут понятно что работаем с диалогами
 //m = message аналогично диалогу, сокращение.
 
 //создаёт новый массив с сообщениями и передаёт в тег Message
-    let messagesElements = props.messages.map((m) => <Message message={m.message} id={m.id} />);
+    let messagesElements = props.state.messages.map((m) => <Message message={m.message} id={m.id} />);
     return (
         <div className={css.dialogs_box}>
             <div className={css.dialogs_items}>
