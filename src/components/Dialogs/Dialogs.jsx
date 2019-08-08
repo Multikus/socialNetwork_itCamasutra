@@ -13,6 +13,7 @@ const Dialogs = (props) => {
 //m = message аналогично диалогу, сокращение.
 
 //создаёт новый массив с сообщениями и передаёт в тег Message
+
     let messagesElements = props.state.messages.map((m) => <Message message={m.message} id={m.id} />);
     return (
         <div className={css.dialogs_box}>
