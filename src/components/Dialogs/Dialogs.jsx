@@ -15,6 +15,14 @@ const Dialogs = (props) => {
 //создаёт новый массив с сообщениями и передаёт в тег Message
 
     let messagesElements = props.state.messages.map((m) => <Message message={m.message} id={m.id} />);
+    
+    let newTextmsg = React.createRef();
+    
+    let sendMsg = () => {
+        let message = newTextmsg.current.value;
+        alert(message);
+    }
+
     return (
         <div className={css.dialogs_box}>
             <div className={css.dialogs_items}>
@@ -26,6 +34,8 @@ const Dialogs = (props) => {
                 {/* Как было раньше. Нужно было в каждое сообщение передать пропс с текстом */}
                 {/* <Message message={messages[2].message} id={messages[2].id} /> */}
                 { messagesElements }
+                <textarea ref={ newTextmsg } ></textarea>
+                <button onClick={ sendMsg } >add post</button>
             </div>
         </div>
     )
