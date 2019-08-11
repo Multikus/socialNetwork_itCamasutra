@@ -26,4 +26,15 @@ let state = {
     }
 }
 
+// функция добавления нового поста.
+export let addPost = (postMessage) => {
+debugger
+    let newPost = {
+        id: 6,
+        message: postMessage, // значение value из поля textarea
+        like: 0
+    };
+    state.profilePage.posts.push(newPost);
+}
+
 export default state; 

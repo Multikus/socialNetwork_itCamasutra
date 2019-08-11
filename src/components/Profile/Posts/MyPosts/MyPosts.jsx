@@ -10,9 +10,10 @@ const MyPosts = (props) => {
   let newPostElement = React.createRef(); //создаём пустую ссылку на элемент
 
   let addPost = () => {
+    debugger
     let text = newPostElement.current.value; //берем значение HTML элемента
-    alert(text);
-  }
+    props.addPost(text); // вызываем функцию добавления поста из файла state.js
+  } //(text) передаётся как параметр для фунции addPost из файла satae.js
 
   return (
     <div className={css.myPosts_wrapp}>
