@@ -13,6 +13,7 @@ const MyPosts = (props) => {
     debugger
     let text = newPostElement.current.value; //берем значение HTML элемента
     props.addPost(text); // вызываем функцию добавления поста из файла state.js
+    newPostElement.current.value = '';//для красоты обнуляем поле ввода текста.
   } //(text) передаётся как параметр для фунции addPost из файла satae.js
 
   return (
