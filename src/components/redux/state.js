@@ -8,7 +8,8 @@ let state = {
             { id: 3, message: 'Закончил 25 урок', like: 25 },
             { id: 4, message: 'Пропсами прокинул данные из index.js', like: 30 },
             { id: 5, message: 'Создал объект state, вынес данные из index.js', like: 31 }
-        ]
+        ],
+        newPostText: ''
     },
 
     dialogsPage: {
@@ -29,15 +30,23 @@ let state = {
 }
 
 // функция добавления нового поста.
-export let addPost = (postMessage) => {
-debugger
+export let addPost = () => {
+
     let newPost = {
         id: 6,
-        message: postMessage, // значение value из поля textarea
+        message: state.profilePage.newPostText, // забираем значение из массива в state.js
         like: 0
     };
     state.profilePage.posts.push(newPost);
+    state.profilePage.newPostText = ''; //обнуляем поле сообщения после добавления
     rerenderEntireTree(state);
 }
+
+export let updateNewPost = (newText) => {
+    state.profilePage.newPostText = newText;
+    rerenderEntireTree(state);
+}
+
+
 
 export default state; 

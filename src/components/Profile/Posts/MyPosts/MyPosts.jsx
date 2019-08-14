@@ -10,18 +10,22 @@ const MyPosts = (props) => {
   let newPostElement = React.createRef(); //создаём пустую ссылку на элемент
 
   let addPost = () => {
-    debugger
-    let text = newPostElement.current.value; //берем значение HTML элемента
-    props.addPost(text); // вызываем функцию добавления поста из файла state.js
-    newPostElement.current.value = '';//для красоты обнуляем поле ввода текста.
+    props.addPost(); // вызываем функцию добавления поста из файла state.js
   } //(text) передаётся как параметр для фунции addPost из файла satae.js
+
+  let onPostChange = () => { //функция обработчика события
+    debugger
+    let text = newPostElement.current.value; //берет значение value чтобы отлавливать попытку изменения
+    props.updateNewPost(text);//функция из state для добавления информации
+  }
 
   return (
     <div className={css.myPosts_wrapp}>
       <h3>My posts</h3>
        <div className={css.post_box}>
-          {/* привязали ссылку к конкретному элементу */}
-          <textarea ref={ newPostElement } name="NewPost" cols="50" rows="5"></textarea>
+          {/*  ref={ newPostElement } привязали ссылку к конкретному элементу */}
+          {/*  onChange={onPostChange} добавили обработчик события */}
+          <textarea ref={ newPostElement } onChange={onPostChange} value={props.newPostText} />
 
           <button onClick={ addPost }   className={css.addBtn_post}>Add post</button>
 
@@ -39,4 +43,4 @@ const MyPosts = (props) => {
   )
 }
 
-export default MyPosts;
+export default MyPosts; 
