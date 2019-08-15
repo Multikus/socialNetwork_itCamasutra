@@ -9,12 +9,22 @@ const MyPosts = (props) => {
 
   let newPostElement = React.createRef(); //создаём пустую ссылку на элемент
 
+  let disableAdd = () => {
+
+    let attrTextArea = document.querySelector('textarea');
+    let atrBtn = document.querySelector('button');
+      if (attrTextArea.value.length === 0) {
+        atrBtn.setAttribute('disabled', 'disabled')
+    }
+  }
+
   let addPost = () => {
+    disableAdd();
     props.addPost(); // вызываем функцию добавления поста из файла state.js
-  } //(text) передаётся как параметр для фунции addPost из файла satae.js
+  } 
 
   let onPostChange = () => { //функция обработчика события
-    debugger
+
     let text = newPostElement.current.value; //берет значение value чтобы отлавливать попытку изменения
     props.updateNewPost(text);//функция из state для добавления информации
   }
@@ -25,7 +35,7 @@ const MyPosts = (props) => {
        <div className={css.post_box}>
           {/*  ref={ newPostElement } привязали ссылку к конкретному элементу */}
           {/*  onChange={onPostChange} добавили обработчик события */}
-          <textarea ref={ newPostElement } onChange={onPostChange} value={props.newPostText} />
+          <textarea class='testText'  ref={ newPostElement } onChange={onPostChange} value={props.newPostText} />
 
           <button onClick={ addPost }   className={css.addBtn_post}>Add post</button>
 

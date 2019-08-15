@@ -1,4 +1,6 @@
-import { rerenderEntireTree } from "../../render";
+let rerenderEntireTree = () => {
+    console.log('state changed');
+}
 
 let state = {
     profilePage: {
@@ -30,7 +32,7 @@ let state = {
 }
 
 // функция добавления нового поста.
-export let addPost = () => {
+export const addPost = () => {
 
     let newPost = {
         id: 6,
@@ -42,11 +44,16 @@ export let addPost = () => {
     rerenderEntireTree(state);
 }
 
-export let updateNewPost = (newText) => {
+//функция отслеживает изменения в textarea передаёт в BLL и обратно через пропсы
+export const updateNewPost = (newText) => {
     state.profilePage.newPostText = newText;
     rerenderEntireTree(state);
 }
 
-
+//избавляемся от циклической зависимости для функции rerenderEntireTree
+//получаем rerenderEntireTree в параметрах этой функции
+export const  subscribe = (observer) => {
+    rerenderEntireTree = observer; //observer - это паттерн. 
+}
 
 export default state; 
