@@ -9,22 +9,15 @@ const MyPosts = (props) => {
 
   let newPostElement = React.createRef(); //создаём пустую ссылку на элемент
 
-  let disableAdd = () => {
-
-    let attrTextArea = document.querySelector('textarea');
-    let atrBtn = document.querySelector('button');
-      if (attrTextArea.value.length === 0) {
-        atrBtn.setAttribute('disabled', 'disabled')
-    }
-  }
-
   let addPost = () => {
-    disableAdd();
-    props.addPost(); // вызываем функцию добавления поста из файла state.js
+    if(newPostElement.current.value.length === 0) {
+      return false;
+    } else {
+      props.addPost(); // вызываем функцию добавления поста из файла state.js
+    }
   } 
 
   let onPostChange = () => { //функция обработчика события
-
     let text = newPostElement.current.value; //берет значение value чтобы отлавливать попытку изменения
     props.updateNewPost(text);//функция из state для добавления информации
   }
