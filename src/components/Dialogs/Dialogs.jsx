@@ -35,7 +35,7 @@ const Dialogs = (props) => {
                 {/* <Message message={messages[2].message} id={messages[2].id} /> */}
                 { messagesElements }
                 <textarea ref={ newTextmsg } ></textarea>
-                <button onClick={ sendMsg } >add post</button>
+                <button onClick={ sendMsg } >Send message</button>
             </div>
         </div>
     )
