@@ -26,11 +26,16 @@ let store = {
             ]    
         }
     },
+    _callSubscriber() { //метод store. Бывшая функция rerenderEntireTree. Уведомляет подписчика
+        console.log('state changed');
+    },
     getState () {
         return this._state;
     },
-    _callSubscriber() { //метод store. Бывшая функция rerenderEntireTree. Уведомляет подписчика
-        console.log('state changed');
+    //избавляемся от циклической зависимости для функции rerenderEntireTree
+    //получаем rerenderEntireTree в параметрах этой функции
+    subscribe (observer) {
+        this._callSubscriber = observer; //observer - это паттерн. 
     },
     addPost () { // функцию переделали в метод добавления нового поста.
     let newPost = {
@@ -47,12 +52,8 @@ let store = {
         debugger;
         this._state.profilePage.newPostText = newText;
         this._callSubscriber(this._state);
-    },
-    //избавляемся от циклической зависимости для функции rerenderEntireTree
-    //получаем rerenderEntireTree в параметрах этой функции
-    subscribe (observer) {
-        this._callSubscriber = observer; //observer - это паттерн. 
     }
+
 }
 
 export default store; 
