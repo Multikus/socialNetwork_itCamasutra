@@ -9,8 +9,7 @@ import store from './components/redux/state';
 let rerenderEntireTree = () => {
     ReactDOM.render(
         <BrowserRouter>
-            <App state={store.getState()} addPost={store.addPost.bind(store)} 
-                updateNewPost={store.updateNewPost.bind(store)}/>
+            <App state={store.getState()} dispatch={store.dispatch.bind(store)} />
         </BrowserRouter>, document.getElementById('root'));
 }
 
@@ -18,3 +17,6 @@ rerenderEntireTree (store.getState());
 
 store.subscribe(rerenderEntireTree);//В данном случае rerenderEntireTree является подписчиком, 
                                     //которого уведомляет метод _callSubscriber
+
+
+serviceWorker.unregister();

@@ -1,5 +1,5 @@
 let store = {
-      _state: { //делаем приватным чтобы не было доступа внешнего.
+    _state: { //делаем приватным чтобы не было доступа внешнего.
         profilePage: {
             posts: [
                 { id: 1, message: 'Hi! How are you?', like: 21 },
@@ -37,23 +37,72 @@ let store = {
     subscribe (observer) {
         this._callSubscriber = observer; //observer - это паттерн. 
     },
-    addPost () { // функцию переделали в метод добавления нового поста.
-    let newPost = {
-        id: 6,
-        message: this._state.profilePage.newPostText, // забираем значение из массива в state.js
-        like: 0
-        };
-        this._state.profilePage.posts.push(newPost);
-        this._state.profilePage.newPostText = ''; //обнуляем поле сообщения после добавления
-        this._callSubscriber(this._state);
-    },
-    //функция отслеживает изменения в textarea передаёт в BLL и обратно через пропсы
-    updateNewPost (newText) { //переделали в метод
-        debugger;
-        this._state.profilePage.newPostText = newText;
-        this._callSubscriber(this._state);
+    dispatch(action) {
+        if(action.type === 'ADD-POST') {
+            let newPost = {
+                id: 6,
+                message: this._state.profilePage.newPostText, // забираем значение из массива в state.js
+                like: 0
+                };
+                this._state.profilePage.posts.push(newPost);
+                this._state.profilePage.newPostText = ''; //обнуляем поле сообщения после добавления
+                this._callSubscriber(this._state);
+        } else if(action.type === 'UPDATE-NEW-POST') {
+            this._state.profilePage.newPostText = action.newText; //action.newText - упаковали новый текст в объект action
+            this._callSubscriber(this._state);
+        }
     }
-
 }
 
 export default store; 
+
+
+
+
+//ЕЩЁ ОДИН СПОСОБ ЗАПИСИ И ВЫЗОМА МЕТОДА dispatch
+//Деламе методы addPost и updateNewPost приватными и затем в методе dispatch вызываем их
+//ПРИМЕР
+// _addPost () { 
+//     let newPost = {
+//         id: 6,
+//         message: this._state.profilePage.newPostText, 
+//         like: 0
+//         };
+//         this._state.profilePage.posts.push(newPost);
+//         this._state.profilePage.newPostText = ''; 
+//         this._callSubscriber(this._state);
+// },
+// _updateNewPost (newText) { 
+//     this._state.profilePage.newPostText = newText;
+//     this._callSubscriber(this._state);
+// }
+// dispatch(action) {
+//     if(action.type === 'ADD-POST') {
+//          this._addPost();
+//     } else if(action.type === 'UPDATE-NEW-POST') {
+//          this._updateNewPost(action.newText);
+//     }
+// }
+
+
+//Было два метода которые вызывались передавались в компоненту. Их заменили на метод dispatch
+
+// addPost () { // функцию переделали в метод добавления нового поста.
+//     let newPost = {
+//         id: 6,
+//         message: this._state.profilePage.newPostText, // забираем значение из массива в state.js
+//         like: 0
+//         };
+//         this._state.profilePage.posts.push(newPost);
+//         this._state.profilePage.newPostText = ''; //обнуляем поле сообщения после добавления
+//         this._callSubscriber(this._state);
+// },
+
+
+// //функция отслеживает изменения в textarea передаёт в BLL и обратно через пропсы
+// updateNewPost (newText) { //переделали в метод
+//     this._state.profilePage.newPostText = newText;
+//     this._callSubscriber(this._state);
+// }
+
+

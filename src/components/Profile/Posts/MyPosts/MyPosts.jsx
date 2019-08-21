@@ -13,13 +13,16 @@ const MyPosts = (props) => {
     if(newPostElement.current.value.length === 0) {
       return false;
     } else {
-      props.addPost(); // вызываем функцию добавления поста из файла state.js
+      //props.addPost(); // вызываем функцию добавления поста из файла state.js
+      props.dispatch( { type: 'ADD-POST'} );
     }
   } 
 
   let onPostChange = () => { //функция обработчика события
     let text = newPostElement.current.value; //берет значение value чтобы отлавливать попытку изменения
-    props.updateNewPost(text);//функция из state для добавления информации
+    // props.updateNewPost(text);//функция из state для добавления информации
+    //заменили на вызов одного метода dispatch 
+    props.dispatch( { type: 'UPDATE-NEW-POST', newText: text } );
   }
 
   return (
