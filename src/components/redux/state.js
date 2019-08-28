@@ -1,3 +1,8 @@
+const ADD_POST = 'ADD-POST';
+const UPDATE_NEW_POST = 'UPDATE-NEW-POST';
+const UPDATE_NEW_MESSAGE_BODY = 'UPDETE-NEW-MESSAGE-BODY';
+const SEND_MESSAGE = 'SEND-MESSAGE'
+
 let store = {
     _state: { //делаем приватным чтобы не было доступа внешнего.
         profilePage: {
@@ -23,7 +28,8 @@ let store = {
                 { id: 4, name: 'Sasha' },
                 { id: 5, name: 'Viktor' },
                 { id: 6, name: 'Valera' }
-            ]    
+            ],
+            newMessageBody: ''
         }
     },
     _callSubscriber() { //метод store. Бывшая функция rerenderEntireTree. Уведомляет подписчика
@@ -32,13 +38,13 @@ let store = {
     getState () {
         return this._state;
     },
-    //избавляемся от циклической зависимости для функции rerenderEntireTree
+    //избавляемся от циклическ ой зависимости для функции rerenderEntireTree
     //получаем rerenderEntireTree в параметрах этой функции
     subscribe (observer) {
         this._callSubscriber = observer; //observer - это паттерн. 
     },
     dispatch(action) {
-        if(action.type === 'ADD-POST') {
+        if(action.type === ADD_POST) {
             let newPost = {
                 id: 6,
                 message: this._state.profilePage.newPostText, // забираем значение из массива в state.js
@@ -47,12 +53,36 @@ let store = {
                 this._state.profilePage.posts.push(newPost);
                 this._state.profilePage.newPostText = ''; //обнуляем поле сообщения после добавления
                 this._callSubscriber(this._state);
-        } else if(action.type === 'UPDATE-NEW-POST') {
+                
+        } else if(action.type === UPDATE_NEW_POST) {
             this._state.profilePage.newPostText = action.newText; //action.newText - упаковали новый текст в объект action
             this._callSubscriber(this._state);
+
+        } else if (action.type === UPDATE_NEW_MESSAGE_BODY) {
+            this._state.dialogsPage.newMessageBody = action.body;
+            this._callSubscriber(this._state);
+
+        } else if (action.type === SEND_MESSAGE) {
+            let body = this._state.dialogsPage.newMessageBody = '';
+                this._state.dialogsPage.messages.push({ id: 6, message: body });
+                this._callSubscriber(this._state);
         }
     }
 }
+
+export const addPostActionCreator = () => ({type: ADD_POST})//пример сокращенной записи
+  
+export const updateNewPostActionCreator = (text) => {
+    return {
+      type: UPDATE_NEW_POST, 
+      newText: text  
+    }
+  }
+
+export const sendMessageCreator = () => ({type: SEND_MESSAGE})
+
+export const updateNewMessageBodyCreator = (body) => 
+    ({type: UPDATE_NEW_MESSAGE_BODY, body: body })
 
 export default store; 
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import css from './MyPosts.module.css';
 import Post from './Post/Post';
+import {addPostActionCreator, updateNewPostActionCreator} from '../../../redux/state';
 
 
 const MyPosts = (props) => {
@@ -14,7 +15,7 @@ const MyPosts = (props) => {
       return false;
     } else {
       //props.addPost(); // вызываем функцию добавления поста из файла state.js
-      props.dispatch( { type: 'ADD-POST'} );
+      props.dispatch(addPostActionCreator());
     }
   } 
 
@@ -22,7 +23,7 @@ const MyPosts = (props) => {
     let text = newPostElement.current.value; //берет значение value чтобы отлавливать попытку изменения
     // props.updateNewPost(text);//функция из state для добавления информации
     //заменили на вызов одного метода dispatch 
-    props.dispatch( { type: 'UPDATE-NEW-POST', newText: text } );
+    props.dispatch(updateNewPostActionCreator(text));
   }
 
   return (
